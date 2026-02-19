@@ -41,7 +41,6 @@ export default function Browse() {
       .order('featured', { ascending: false });
 
     if (activeCategory !== 'all') {
-      // Filter by both category (legacy) and categories array
       query = query.or(`category.eq.${activeCategory},categories.cs.{${activeCategory}}`);
     }
 
@@ -55,26 +54,31 @@ export default function Browse() {
     : providers;
 
   const hasNoResults = !loading && filtered.length === 0;
-  const isZipEmpty = zipSearch.trim().length === 5 && filtered.length === 0;
 
   return (
-    <div className="min-h-screen section-offwhite">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Browse Independent Providers</h1>
-          <p className="text-muted-foreground text-base">DFW non-medical aging-in-place support — contact providers directly</p>
-        </div>
+    <div style={{ background: '#f8f9fb', minHeight: '100vh' }}>
+      {/* Page header */}
+      <div style={{ background: '#ffffff', borderBottom: '1px solid #dde2e8', padding: '40px 40px 32px' }}>
+        <div style={{ maxWidth: 1060, margin: '0 auto' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#c4873e', marginBottom: 8, fontFamily: 'Outfit, sans-serif' }}>Providers</div>
+          <h1 style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.7rem', color: '#1a2e4a', marginBottom: 20 }}>Browse Independent Providers</h1>
 
-        {/* Filters row */}
-        <div className="flex flex-col gap-4 mb-8">
-          <div className="flex flex-wrap gap-2">
+          {/* Category filter tabs */}
+          <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => { setActiveCategory('all'); navigate('/browse'); }}
-              className={`px-4 py-2 text-sm font-medium rounded-full border transition-all ${
-                activeCategory === 'all'
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'bg-card text-foreground/70 border-border hover:border-primary hover:text-primary'
-              }`}
+              style={{
+                padding: '6px 16px',
+                fontSize: '0.82rem',
+                fontWeight: 500,
+                borderRadius: 40,
+                border: activeCategory === 'all' ? '1.5px solid #1a2e4a' : '1.5px solid #dde2e8',
+                background: activeCategory === 'all' ? '#1a2e4a' : 'transparent',
+                color: activeCategory === 'all' ? 'white' : '#4a5c6a',
+                cursor: 'pointer',
+                fontFamily: 'Outfit, sans-serif',
+                transition: 'all 0.15s',
+              }}
             >
               All
             </button>
@@ -82,52 +86,60 @@ export default function Browse() {
               <button
                 key={cat.id}
                 onClick={() => { setActiveCategory(cat.id); navigate(`/browse/${cat.id}`); }}
-                className={`px-4 py-2 text-sm font-medium rounded-full border transition-all ${
-                  activeCategory === cat.id
-                    ? 'bg-primary text-primary-foreground border-primary'
-                    : 'bg-card text-foreground/70 border-border hover:border-primary hover:text-primary'
-                }`}
+                style={{
+                  padding: '6px 16px',
+                  fontSize: '0.82rem',
+                  fontWeight: 500,
+                  borderRadius: 40,
+                  border: activeCategory === cat.id ? '1.5px solid #1a2e4a' : '1.5px solid #dde2e8',
+                  background: activeCategory === cat.id ? '#1a2e4a' : 'transparent',
+                  color: activeCategory === cat.id ? 'white' : '#4a5c6a',
+                  cursor: 'pointer',
+                  fontFamily: 'Outfit, sans-serif',
+                  transition: 'all 0.15s',
+                }}
               >
-                {cat.emoji} {cat.label}
+                {cat.label}
               </button>
             ))}
           </div>
 
           {/* ZIP Search */}
-          <div className="flex items-center gap-3 max-w-xs">
-            <div className="relative flex-1">
-              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, maxWidth: 280 }}>
+            <div style={{ position: 'relative', flex: 1 }}>
+              <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#8295a3' }} />
               <input
                 placeholder="Filter by ZIP code"
                 value={zipSearch}
                 onChange={(e) => setZipSearch(e.target.value.replace(/\D/g, '').slice(0, 5))}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-border rounded-full bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                style={{ width: '100%', paddingLeft: 32, paddingRight: 12, paddingTop: 8, paddingBottom: 8, fontSize: '0.82rem', border: '1.5px solid #dde2e8', borderRadius: 40, background: '#ffffff', outline: 'none', fontFamily: 'Outfit, sans-serif', color: '#1a2e4a' }}
               />
             </div>
             {zipSearch && (
-              <button onClick={() => setZipSearch('')} className="text-muted-foreground hover:text-foreground">
-                <X size={16} />
+              <button onClick={() => setZipSearch('')} style={{ color: '#8295a3', background: 'none', border: 'none', cursor: 'pointer' }}>
+                <X size={15} />
               </button>
             )}
           </div>
         </div>
+      </div>
 
-        {/* Grid */}
+      {/* Results */}
+      <div style={{ maxWidth: 1060, margin: '0 auto', padding: '40px 40px' }}>
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="card-warm p-5 h-52 animate-pulse bg-muted/50" />
+              <div key={i} className="card-warm h-52 animate-pulse" style={{ background: '#e8edf2' }} />
             ))}
           </div>
         ) : hasNoResults ? (
-          <div className="text-center py-20">
-            <p className="text-base text-muted-foreground max-w-md mx-auto mb-6">
-              We're currently onboarding independent providers in DFW. Check back soon or get listed today.
+          <div style={{ background: '#ffffff', border: '1.5px dashed #dde2e8', borderRadius: 10, padding: '64px 32px', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.98rem', color: '#4a5c6a', marginBottom: 22, lineHeight: 1.75, fontFamily: 'Outfit, sans-serif' }}>
+              We're currently onboarding independent providers in DFW.<br />Check back soon or get listed today.
             </p>
             <Link
               to="/join"
-              className="inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold text-white"
-              style={{ backgroundColor: '#2563EB' }}
+              style={{ background: '#2563EB', color: 'white', border: 'none', borderRadius: 7, padding: '12px 28px', fontFamily: 'Outfit, sans-serif', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', display: 'inline-block' }}
             >
               Get Listed Free
             </Link>

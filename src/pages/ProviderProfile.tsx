@@ -111,8 +111,8 @@ export default function ProviderProfile() {
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl font-bold text-primary leading-tight">{provider.full_name}</h1>
               {primaryCat && (
-                <span className={`text-sm font-medium px-3 py-1 rounded-full w-fit ${primaryCat.color}`}>
-                  {primaryCat.emoji} {primaryCat.label}
+                <span style={{ fontSize: '0.72rem', fontWeight: 600, color: '#4a5c6a', background: '#f0f4f8', padding: '3px 10px', borderRadius: 40, fontFamily: 'Outfit, sans-serif' }}>
+                  {primaryCat.label}
                 </span>
               )}
               {provider.featured && (

@@ -8,10 +8,10 @@ import Browse from "./pages/Browse";
 import ProviderProfile from "./pages/ProviderProfile";
 import Join from "./pages/Join";
 import Admin from "./pages/Admin";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
 
 const queryClient = new QueryClient();
 
@@ -31,7 +31,7 @@ const App = () => (
               <Route path="/providers/:id" element={<ProviderProfile />} />
               <Route path="/join" element={<Join />} />
               <Route path="/admin" element={<Admin />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

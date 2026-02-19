@@ -183,7 +183,7 @@ export default function Join() {
                       className="w-4 h-4 rounded accent-primary flex-shrink-0"
                     />
                     <span className="text-sm text-foreground/80">
-                      {cat.emoji} {cat.label}
+                      {cat.label}
                     </span>
                   </label>
                 ))}
