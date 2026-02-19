@@ -13,67 +13,54 @@ interface Provider {
   featured?: boolean;
 }
 
-interface ProviderCardProps {
-  provider: Provider;
-}
-
 function getInitials(name: string) {
-  return name
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
+  return name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2);
 }
 
-export default function ProviderCard({ provider }: ProviderCardProps) {
-  // Use categories array first, fall back to single category
+export default function ProviderCard({ provider }: { provider: Provider }) {
   const categoryIds = provider.categories?.length ? provider.categories : [provider.category];
   const primaryCat = getCategoryById(categoryIds[0]);
 
   return (
-    <div className="card-warm p-5 flex flex-col gap-3 hover:shadow-lg transition-shadow duration-200 relative">
+    <div className="card-warm" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: 12, position: 'relative' }}>
       {provider.featured && (
-        <span className="absolute top-3 right-3 badge-amber">★ Featured</span>
+        <span className="badge-amber" style={{ position: 'absolute', top: 12, right: 12 }}>★ Featured</span>
       )}
 
-      <div className="flex items-center gap-3">
-        {/* Avatar */}
-        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg flex-shrink-0 overflow-hidden">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'hsl(213 50% 19% / 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '1rem', color: '#1a2e4a', flexShrink: 0, overflow: 'hidden' }}>
           {provider.photo_url ? (
-            <img src={provider.photo_url} alt={provider.full_name} className="w-12 h-12 rounded-full object-cover" />
+            <img src={provider.photo_url} alt={provider.full_name} style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />
           ) : (
             getInitials(provider.full_name)
           )}
         </div>
-        <div className="flex flex-col gap-1">
-          <h3 className="font-semibold text-foreground leading-tight text-base">{provider.full_name}</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <h3 style={{ fontFamily: 'Lora, Georgia, serif', fontWeight: 600, color: '#1a2e4a', fontSize: '0.95rem', lineHeight: 1.3 }}>{provider.full_name}</h3>
           {primaryCat && (
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${primaryCat.color}`}>
-              {primaryCat.emoji} {primaryCat.label}
+            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: '#4a5c6a', background: '#f0f4f8', padding: '2px 8px', borderRadius: 40, fontFamily: 'Outfit, sans-serif', width: 'fit-content' }}>
+              {primaryCat.label}
             </span>
           )}
         </div>
       </div>
 
-      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{provider.bio}</p>
+      <p style={{ fontSize: '0.82rem', color: '#6e8290', lineHeight: 1.6, fontFamily: 'Outfit, sans-serif', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{provider.bio}</p>
 
-      <div className="flex flex-wrap gap-1">
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
         {provider.served_zips.slice(0, 4).map((zip) => (
-          <span key={zip} className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-md font-mono">
-            {zip}
-          </span>
+          <span key={zip} style={{ fontSize: '0.72rem', background: '#f0f4f8', color: '#4a5c6a', padding: '2px 8px', borderRadius: 4, fontFamily: 'monospace' }}>{zip}</span>
         ))}
         {provider.served_zips.length > 4 && (
-          <span className="text-xs text-muted-foreground">+{provider.served_zips.length - 4} more</span>
+          <span style={{ fontSize: '0.72rem', color: '#8295a3', fontFamily: 'Outfit, sans-serif' }}>+{provider.served_zips.length - 4} more</span>
         )}
       </div>
 
       <Link
         to={`/providers/${provider.id}`}
-        className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-amber hover:gap-2 transition-all"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '0.82rem', fontWeight: 600, color: '#c4873e', textDecoration: 'none', marginTop: 'auto', fontFamily: 'Outfit, sans-serif' }}
       >
-        View Profile <ArrowRight size={14} />
+        View Profile <ArrowRight size={13} />
       </Link>
     </div>
   );

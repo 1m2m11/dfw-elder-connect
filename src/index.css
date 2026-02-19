@@ -62,8 +62,8 @@
 
   h1, h2, h3, h4 {
     font-family: 'Lora', Georgia, serif;
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: 600;
+    line-height: 1.22;
   }
 
   button, input, select, textarea, label, a, p, span, li {
@@ -78,7 +78,7 @@
   }
 
   .btn-amber {
-    background: hsl(var(--amber));
+    background: #c4873e;
     color: #fff;
     font-family: 'Outfit', system-ui, sans-serif;
     @apply hover:opacity-90 transition-all duration-200 shadow-sm;
@@ -87,6 +87,25 @@
   .btn-outline-primary {
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200;
     font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  /* Mockup-exact category card */
+  .cat-card {
+    background: #ffffff;
+    border: 1.5px solid #dde2e8;
+    border-radius: 10px;
+    padding: 26px 20px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .cat-card:hover {
+    border-color: #2563EB;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.09);
+    transform: translateY(-2px);
   }
 
   .card-warm {

@@ -2,65 +2,72 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer style={{ background: '#111e2e', color: 'rgba(255,255,255,0.55)', padding: '52px 40px 28px' }}>
+      <div style={{ maxWidth: 1060, margin: '0 auto' }}>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold mb-3">Zenihand</h3>
-            <p className="text-sm text-primary-foreground/70 leading-relaxed">
-              Connecting DFW families with independent non-medical support providers.
+            <div style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.3rem', color: 'white', marginBottom: 10 }}>
+              Zeni<span style={{ color: '#c4873e' }}>hand</span>
+            </div>
+            <p style={{ fontSize: '0.82rem', lineHeight: 1.7, maxWidth: 260, color: 'rgba(255,255,255,0.55)', fontFamily: 'Outfit, sans-serif' }}>
+              Connecting DFW families with independent, non-medical aging-in-place support providers.
             </p>
           </div>
 
-          {/* Links */}
+          {/* Navigate */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/50">Links</h4>
-            <ul className="flex flex-col gap-2">
-              {[
-                { to: '/', label: 'Home' },
-                { to: '/browse', label: 'Browse Providers' },
-                { to: '/join', label: 'Get Listed' },
-              ].map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className="text-sm text-primary-foreground/75 hover:text-primary-foreground transition-colors">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: 14, fontFamily: 'Outfit, sans-serif' }}>
+              Navigate
+            </h4>
+            {[
+              { to: '/', label: 'Home' },
+              { to: '/browse', label: 'Browse Providers' },
+              { to: '/join', label: 'Get Listed Free' },
+              { to: '/#how-it-works', label: 'How It Works' },
+            ].map((l) => (
+              <Link key={l.to} to={l.to} style={{ display: 'block', fontSize: '0.86rem', color: 'rgba(255,255,255,0.52)', textDecoration: 'none', marginBottom: 9, fontFamily: 'Outfit, sans-serif' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.52)')}
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Contact */}
+          {/* Legal */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/50">Contact</h4>
-            <ul className="flex flex-col gap-2">
-              <li>
-                <a href="mailto:support@zenihand.com" className="text-sm text-primary-foreground/75 hover:text-primary-foreground transition-colors">
-                  support@zenihand.com
-                </a>
-              </li>
-              <li>
-                <span className="text-sm text-primary-foreground/60">Dallas–Fort Worth, TX</span>
-              </li>
-            </ul>
+            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: 14, fontFamily: 'Outfit, sans-serif' }}>
+              Legal
+            </h4>
+            <Link to="/terms" style={{ display: 'block', fontSize: '0.86rem', color: 'rgba(255,255,255,0.52)', textDecoration: 'none', marginBottom: 9, fontFamily: 'Outfit, sans-serif' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.52)')}
+            >
+              Terms of Use
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-10 pt-6">
-          <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl mb-3">
-            Have a question about listings or using Zenihand? Email{' '}
-            <a href="mailto:support@zenihand.com" className="underline hover:text-primary-foreground transition-colors">
-              support@zenihand.com
-            </a>{' '}
-            and we'll respond within one business day.
-          </p>
-          <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl mb-3">
-            Zenihand is a directory platform connecting families with independent providers. We do not employ, supervise, screen, or guarantee any provider or service. All services are non-medical. Families arrange services directly with providers.
-          </p>
-          <p className="text-xs text-primary-foreground/40 mt-2">
+        {/* Support box */}
+        <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '16px 22px', marginBottom: 28, fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.55)', fontFamily: 'Outfit, sans-serif' }}>
+          Have a question about listings or using Zenihand?{' '}
+          Email{' '}
+          <a href="mailto:support@zenihand.com" style={{ color: '#f0c070', textDecoration: 'none' }}>
+            support@zenihand.com
+          </a>{' '}
+          and we'll respond within one business day.
+        </div>
+
+        {/* Bottom disclaimer */}
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 20, fontSize: '0.75rem', textAlign: 'center', lineHeight: 1.8, color: 'rgba(255,255,255,0.4)', fontFamily: 'Outfit, sans-serif' }}>
+          Zenihand is a directory platform connecting families with independent providers.
+          We do not employ, supervise, screen, or guarantee any provider or service.
+          All services are non-medical. Families arrange services directly with providers.
+          <span style={{ opacity: 0.45, display: 'block', marginTop: 10 }}>
             © 2025 Zenihand · Dallas–Fort Worth, TX
-          </p>
+          </span>
         </div>
       </div>
     </footer>

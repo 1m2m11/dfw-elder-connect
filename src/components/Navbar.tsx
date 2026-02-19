@@ -6,81 +6,80 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 
-  const links = [
-    { to: '/', label: 'Home' },
-    { to: '/browse', label: 'Browse' },
-    { to: '/#how-it-works', label: 'How It Works' },
-  ];
-
   return (
-    <header className="sticky top-0 z-40 bg-card/95 backdrop-blur border-b border-border shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header style={{ height: 62, background: '#ffffff', borderBottom: '1px solid #dde2e8', position: 'sticky', top: 0, zIndex: 100 }}>
+      <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 40px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-primary tracking-tight" style={{ fontFamily: 'Lora, Georgia, serif' }}>Zenihand</span>
+        <Link to="/" style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.5rem', fontWeight: 600, color: '#1a2e4a', textDecoration: 'none' }}>
+          Zeni<span style={{ color: '#c4873e' }}>hand</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className={`text-sm font-medium transition-colors ${
-                pathname === l.to
-                  ? 'text-primary font-semibold'
-                  : 'text-foreground/60 hover:text-primary'
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden md:flex items-center gap-3">
+        <nav className="hidden md:flex items-center" style={{ gap: 20 }}>
           <Link
-            to="/browse"
-            className="inline-flex items-center gap-1.5 btn-amber rounded-full px-5 py-2 text-sm font-semibold"
+            to="/#how-it-works"
+            style={{ fontSize: '0.88rem', fontWeight: 500, color: '#4a5c6a', textDecoration: 'none', fontFamily: 'Outfit, sans-serif' }}
           >
-            Browse Providers
+            How It Works
           </Link>
           <Link
             to="/join"
-            className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-colors"
+            style={{
+              background: 'transparent',
+              color: '#1a2e4a',
+              border: '1.5px solid #1a2e4a',
+              borderRadius: 6,
+              padding: '8px 18px',
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
           >
             Get Listed Free
           </Link>
-        </div>
+          <Link
+            to="/browse"
+            style={{
+              background: '#c4873e',
+              color: 'white',
+              border: 'none',
+              borderRadius: 6,
+              padding: '9px 20px',
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            Browse Providers
+          </Link>
+        </nav>
 
-        {/* Mobile menu toggle */}
-        <button className="md:hidden p-2 text-foreground/70" onClick={() => setOpen(!open)}>
+        {/* Mobile toggle */}
+        <button className="md:hidden p-2" style={{ color: '#4a5c6a' }} onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-border bg-card px-4 py-4 flex flex-col gap-3">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="text-sm font-medium text-foreground/80 hover:text-primary py-1"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </Link>
-          ))}
+        <div style={{ background: '#ffffff', borderTop: '1px solid #dde2e8', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <Link to="/#how-it-works" style={{ fontSize: '0.9rem', color: '#4a5c6a', textDecoration: 'none', fontFamily: 'Outfit, sans-serif' }} onClick={() => setOpen(false)}>
+            How It Works
+          </Link>
           <Link
             to="/browse"
-            className="btn-amber rounded-full text-center px-5 py-2.5 text-sm font-semibold mt-1"
+            style={{ background: '#c4873e', color: 'white', borderRadius: 6, padding: '10px 16px', fontFamily: 'Outfit, sans-serif', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', textAlign: 'center' }}
             onClick={() => setOpen(false)}
           >
             Browse Providers
           </Link>
           <Link
             to="/join"
-            className="rounded-full text-center px-5 py-2.5 text-sm font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-colors"
+            style={{ background: 'transparent', color: '#1a2e4a', border: '1.5px solid #1a2e4a', borderRadius: 6, padding: '9px 16px', fontFamily: 'Outfit, sans-serif', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', textAlign: 'center' }}
             onClick={() => setOpen(false)}
           >
             Get Listed Free

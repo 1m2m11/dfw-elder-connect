@@ -133,7 +133,7 @@ export default function Admin() {
         <div className="flex items-start justify-between gap-2 flex-wrap">
           <div>
             <p className="font-semibold text-primary">{p.full_name}</p>
-            <p className="text-sm text-muted-foreground">{primaryCat?.emoji} {primaryCat?.label}</p>
+            <p className="text-sm text-muted-foreground">{primaryCat?.label}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{p.email} · {p.phone}</p>
             <div className="flex flex-wrap gap-1 mt-1">
               {p.served_zips.map((z) => (
