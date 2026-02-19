@@ -70,7 +70,7 @@ export default function Index() {
           </h1>
 
           <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.7)', maxWidth: 520, margin: '0 auto 38px', lineHeight: 1.75, fontFamily: 'Outfit, sans-serif' }}>
-            Zenihand connects families with independent providers offering non-medical support across the DFW Metro.
+            Connecting DFW families with trusted independent providers offering non-medical support at home.
           </p>
 
           <div className="flex gap-3 justify-center flex-wrap">
@@ -164,9 +164,9 @@ export default function Index() {
       </section>
 
       {/* Provider CTA */}
-      <section style={{ background: '#1a2e4a', padding: '64px 40px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+      <section style={{ background: '#1a2e4a', padding: '48px 40px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
         <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.7rem', color: 'white', marginBottom: 14 }}>
+          <h2 style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.45rem', color: 'white', marginBottom: 12 }}>
             Are you an independent support provider in DFW?
           </h2>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.65)', marginBottom: 30, lineHeight: 1.7, fontFamily: 'Outfit, sans-serif' }}>
