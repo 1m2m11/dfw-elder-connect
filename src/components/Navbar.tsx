@@ -8,8 +8,8 @@ export default function Navbar() {
 
   const links = [
     { to: '/', label: 'Home' },
-    { to: '/browse', label: 'Browse Providers' },
-    { to: '/join', label: 'Get Listed' },
+    { to: '/browse', label: 'Browse' },
+    { to: '/#how-it-works', label: 'How It Works' },
   ];
 
   return (
@@ -38,10 +38,16 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            to="/browse"
+            className="inline-flex items-center gap-1.5 btn-amber rounded-full px-5 py-2 text-sm font-semibold"
+          >
+            Browse Providers
+          </Link>
           <Link
             to="/join"
-            className="inline-flex items-center gap-1.5 btn-amber rounded-full px-5 py-2 text-sm font-semibold"
+            className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-colors"
           >
             Get Listed Free
           </Link>
@@ -67,8 +73,15 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            to="/join"
+            to="/browse"
             className="btn-amber rounded-full text-center px-5 py-2.5 text-sm font-semibold mt-1"
+            onClick={() => setOpen(false)}
+          >
+            Browse Providers
+          </Link>
+          <Link
+            to="/join"
+            className="rounded-full text-center px-5 py-2.5 text-sm font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-colors"
             onClick={() => setOpen(false)}
           >
             Get Listed Free
