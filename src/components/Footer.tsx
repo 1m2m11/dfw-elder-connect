@@ -52,7 +52,7 @@ export default function Footer() {
 
         {/* Support box */}
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '16px 22px', marginBottom: 28, fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.55)', fontFamily: 'Outfit, sans-serif' }}>
-          Have a question about listings or using Zenihand?{' '}
+          Need help or have a question?{' '}
           Email{' '}
           <a href="mailto:support@zenihand.com" style={{ color: '#f0c070', textDecoration: 'none' }}>
             support@zenihand.com
