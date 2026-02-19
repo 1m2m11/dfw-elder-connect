@@ -4,7 +4,7 @@ export const CATEGORIES = [
     label: 'Non-Medical Personal Aide',
     emoji: '🤝',
     description: 'Help with daily routines and household tasks',
-    color: 'bg-emerald-50 text-emerald-700',
+    color: 'bg-blue-50 text-blue-700',
   },
   {
     id: 'companion',
@@ -18,14 +18,14 @@ export const CATEGORIES = [
     label: 'Senior Housekeeping',
     emoji: '🏡',
     description: 'Light cleaning, laundry, and tidying',
-    color: 'bg-amber-50 text-amber-700',
+    color: 'bg-violet-50 text-violet-700',
   },
   {
     id: 'errands',
     label: 'Errand & Grocery Help',
     emoji: '🛒',
     description: 'Shopping runs, pickups, and errands',
-    color: 'bg-orange-50 text-orange-700',
+    color: 'bg-amber-50 text-amber-700',
   },
   {
     id: 'meals',

@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -10,28 +9,28 @@ export default function Navbar() {
   const links = [
     { to: '/', label: 'Home' },
     { to: '/browse', label: 'Browse Providers' },
-    { to: '/join', label: 'List Your Services' },
+    { to: '/join', label: 'Get Listed' },
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-border/60 shadow-sm">
+    <header className="sticky top-0 z-40 bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-serif font-bold text-forest">Zenihand</span>
-          <span className="hidden sm:block text-xs text-muted-foreground font-medium mt-1">DFW</span>
+          <span className="text-xl font-bold text-primary tracking-tight">Zenihand</span>
+          <span className="hidden sm:block text-xs text-muted-foreground font-medium border border-border rounded px-1.5 py-0.5">DFW</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-7">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               className={`text-sm font-medium transition-colors ${
                 pathname === l.to
-                  ? 'text-forest font-semibold'
-                  : 'text-foreground/70 hover:text-forest'
+                  ? 'text-primary font-semibold'
+                  : 'text-foreground/60 hover:text-primary'
               }`}
             >
               {l.label}
@@ -40,9 +39,12 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button asChild size="sm" className="btn-primary rounded-full px-5">
-            <Link to="/join">Get Listed Free</Link>
-          </Button>
+          <Link
+            to="/join"
+            className="inline-flex items-center gap-1.5 btn-amber rounded-full px-5 py-2 text-sm font-semibold"
+          >
+            Get Listed Free
+          </Link>
         </div>
 
         {/* Mobile menu toggle */}
@@ -53,20 +55,24 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-border bg-cream px-4 py-4 flex flex-col gap-3">
+        <div className="md:hidden border-t border-border bg-card px-4 py-4 flex flex-col gap-3">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="text-sm font-medium text-foreground/80 hover:text-forest py-1"
+              className="text-sm font-medium text-foreground/80 hover:text-primary py-1"
               onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="btn-primary rounded-full w-full mt-1">
-            <Link to="/join" onClick={() => setOpen(false)}>Get Listed Free</Link>
-          </Button>
+          <Link
+            to="/join"
+            className="btn-amber rounded-full text-center px-5 py-2.5 text-sm font-semibold mt-1"
+            onClick={() => setOpen(false)}
+          >
+            Get Listed Free
+          </Link>
         </div>
       )}
     </header>
