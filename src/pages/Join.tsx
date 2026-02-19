@@ -110,7 +110,7 @@ export default function Join() {
       <div className="max-w-xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-3">Get Listed Free on Zenihand</h1>
-          <p className="text-muted-foreground text-lg">Independent DFW providers only. Your profile goes live after a quick review. Free, always.</p>
+          <p className="text-muted-foreground text-lg">Your profile goes live after a quick review.</p>
         </div>
 
         <div className="card-warm p-8">
