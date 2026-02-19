@@ -30,21 +30,21 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="section-offwhite py-20 sm:py-28 relative overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 70% 50% at 50% -10%, hsl(213 50% 19% / 0.06), transparent 70%)',
-          }}
-        />
+      <section
+        className="py-20 sm:py-28 relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(160deg, #1a2e4a 0%, #243d5e 55%, #2a4a6e 100%)',
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative">
-          <div className="inline-flex items-center gap-2 bg-amber/10 text-amber text-xs font-semibold px-4 py-1.5 rounded-full mb-6 border border-amber/20">
+          <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 border border-white/20" style={{ fontFamily: 'Outfit, sans-serif' }}>
             DFW Non-Medical Aging-in-Place Directory
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight mb-6">
-            Find Independent Non-Medical Support in DFW
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            Find Independent Non-Medical{' '}
+            <span style={{ color: '#f0c070', fontStyle: 'italic' }}>Support in DFW</span>
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'rgba(255,255,255,0.70)', fontFamily: 'Outfit, sans-serif' }}>
             Zenihand connects families with independent providers offering non-medical support across the DFW Metro.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -56,7 +56,10 @@ export default function Index() {
             </Link>
             <Link
               to="/join"
-              className="rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center border-2 border-white text-white hover:bg-white/10 transition-colors"
+              className="rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center transition-colors"
+              style={{ border: '2px solid rgba(255,255,255,0.45)', color: '#ffffff', background: 'transparent', fontFamily: 'Outfit, sans-serif' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               Get Listed Free
             </Link>
@@ -65,13 +68,13 @@ export default function Index() {
       </section>
 
       {/* Trust Bar */}
-      <section className="bg-primary py-5">
+      <section style={{ background: '#ffffff', borderBottom: '1px solid #dde2e8' }} className="py-5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 items-center text-center sm:text-left">
             {trustItems.map((item) => (
-              <div key={item} className="flex items-center gap-2 text-primary-foreground/80">
-                <span className="text-amber font-bold text-lg leading-none">·</span>
-                <span className="text-sm font-medium">{item}</span>
+              <div key={item} className="flex items-center gap-2">
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c4873e', flexShrink: 0, display: 'inline-block' }} />
+                <span style={{ fontSize: '0.82rem', color: '#4a5c6a', fontFamily: 'Outfit, sans-serif', fontWeight: 500 }}>{item}</span>
               </div>
             ))}
           </div>
@@ -83,18 +86,18 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-3">Browse by Category</h2>
-            <p className="text-muted-foreground text-lg">Find the right kind of support for your family</p>
+            <p className="text-muted-foreground text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>Find the right kind of support for your family</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             {CATEGORIES.map((cat) => (
               <Link
                 key={cat.id}
                 to={`/browse/${cat.id}`}
-                className="card-warm p-6 flex flex-col gap-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 group"
+                className="card-warm p-6 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-200 group"
               >
-                <h3 className="font-semibold text-foreground leading-snug text-base">{cat.label}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{cat.description}</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-amber group-hover:gap-2 transition-all">
+                <h3 className="font-semibold leading-snug text-base" style={{ color: '#1a2e4a' }}>{cat.label}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1" style={{ fontFamily: 'Outfit, sans-serif' }}>{cat.description}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all" style={{ color: '#c4873e', fontFamily: 'Outfit, sans-serif' }}>
                   Browse <ArrowRight size={13} />
                 </span>
               </Link>
@@ -104,19 +107,27 @@ export default function Index() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 section-lightgrey">
+      <section className="py-20" style={{ background: '#1a2e4a' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-3">How It Works</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">How It Works</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {howItWorks.map((step) => (
               <div key={step.step} className="text-center">
-                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  {step.step}
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{
+                    border: '2px solid rgba(240,192,112,0.45)',
+                    background: 'transparent',
+                    width: 40,
+                    height: 40,
+                  }}
+                >
+                  <span style={{ color: '#f0c070', fontFamily: 'Lora, Georgia, serif', fontWeight: 700, fontSize: '1.1rem' }}>{step.step}</span>
                 </div>
-                <h3 className="font-bold text-xl text-primary mb-2">{step.title}</h3>
-                <p className="text-muted-foreground text-base leading-relaxed">{step.desc}</p>
+                <h3 className="font-bold text-xl text-white mb-2">{step.title}</h3>
+                <p className="text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'Outfit, sans-serif' }}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -142,7 +153,7 @@ export default function Index() {
           <h2 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-4">
             Are you an independent support provider in DFW?
           </h2>
-          <p className="text-primary-foreground/70 text-lg mb-8">
+          <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.70)', fontFamily: 'Outfit, sans-serif' }}>
             Create your free listing and connect with families looking for your services.
           </p>
           <Link
