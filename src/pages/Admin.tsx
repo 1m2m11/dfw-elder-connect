@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { getCategoryById } from '@/lib/categories';
-import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { Check, X, Star, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { Check, Star, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 
-const ADMIN_PASSWORD = 'zenihand2024';
+const ADMIN_PASSWORD = 'zenihand2025';
 
 interface Provider {
   id: string;
   full_name: string;
   category: string;
+  categories?: string[];
   served_zips: string[];
   bio: string;
   email: string;
@@ -26,7 +26,6 @@ interface Inquiry {
   provider_id: string;
   sender_name: string;
   sender_email: string;
-  sender_phone?: string | null;
   message: string;
   providers?: { full_name: string };
 }
@@ -64,7 +63,7 @@ export default function Admin() {
   async function approveProvider(id: string) {
     await supabase.from('providers').update({ approved: true }).eq('id', id);
     fetchProviders();
-    toast({ title: 'Provider approved!', description: 'They are now visible in the directory.' });
+    toast({ title: 'Provider approved', description: 'Now visible in the directory.' });
   }
 
   async function deleteProvider(id: string) {
@@ -88,20 +87,28 @@ export default function Admin() {
 
   if (!authed) {
     return (
-      <div className="min-h-screen section-cream flex items-center justify-center px-4">
+      <div className="min-h-screen section-offwhite flex items-center justify-center px-4">
         <div className="card-warm p-8 max-w-sm w-full">
-          <h1 className="font-serif text-2xl font-bold text-center text-forest mb-6">Zenihand Admin</h1>
-          <label className="text-sm font-medium block mb-1">Password</label>
+          <div className="text-center mb-6">
+            <h1 className="text-2xl font-bold text-primary">Zenihand</h1>
+            <p className="text-sm text-muted-foreground mt-1">Admin Dashboard</p>
+          </div>
+          <label className="text-sm font-semibold block mb-1.5">Password</label>
           <input
             type="password"
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring mb-3"
+            className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary mb-3"
             value={pw}
             onChange={(e) => { setPw(e.target.value); setPwError(false); }}
             onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
             placeholder="Enter admin password"
           />
           {pwError && <p className="text-xs text-destructive mb-3">Incorrect password</p>}
-          <Button className="btn-primary rounded-full w-full" onClick={handleLogin}>Sign In</Button>
+          <button
+            className="btn-primary rounded-full w-full py-2.5 text-sm font-semibold"
+            onClick={handleLogin}
+          >
+            Sign In
+          </button>
         </div>
       </div>
     );
@@ -117,14 +124,16 @@ export default function Admin() {
   ];
 
   function ProviderRow({ p, showApprove }: { p: Provider; showApprove: boolean }) {
-    const cat = getCategoryById(p.category);
+    const categoryIds = p.categories?.length ? p.categories : [p.category];
+    const primaryCat = getCategoryById(categoryIds[0]);
     const expanded = expandedBio === p.id;
+
     return (
-      <div className="border border-border rounded-xl p-4 flex flex-col gap-2">
+      <div className="border border-border rounded-xl p-4 bg-card flex flex-col gap-2">
         <div className="flex items-start justify-between gap-2 flex-wrap">
           <div>
-            <p className="font-serif font-semibold">{p.full_name}</p>
-            <p className="text-sm text-muted-foreground">{cat?.emoji} {cat?.label}</p>
+            <p className="font-semibold text-primary">{p.full_name}</p>
+            <p className="text-sm text-muted-foreground">{primaryCat?.emoji} {primaryCat?.label}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{p.email} · {p.phone}</p>
             <div className="flex flex-wrap gap-1 mt-1">
               {p.served_zips.map((z) => (
@@ -137,67 +146,79 @@ export default function Admin() {
           </div>
           <div className="flex flex-wrap gap-2">
             {showApprove && (
-              <Button size="sm" className="btn-primary rounded-full gap-1" onClick={() => approveProvider(p.id)}>
-                <Check size={14} /> Approve
-              </Button>
+              <button
+                className="btn-primary rounded-full px-3 py-1.5 text-xs font-semibold flex items-center gap-1"
+                onClick={() => approveProvider(p.id)}
+              >
+                <Check size={13} /> Approve
+              </button>
             )}
             {!showApprove && (
-              <Button
-                size="sm"
-                variant="outline"
-                className={`rounded-full gap-1 ${p.featured ? 'border-clay text-clay' : ''}`}
+              <button
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold border flex items-center gap-1 transition-colors ${
+                  p.featured
+                    ? 'border-amber text-amber bg-amber-light'
+                    : 'border-border text-muted-foreground hover:border-amber hover:text-amber'
+                }`}
                 onClick={() => toggleFeatured(p.id, p.featured)}
               >
-                <Star size={14} /> {p.featured ? 'Unfeature' : 'Feature'}
-              </Button>
+                <Star size={12} /> {p.featured ? 'Unfeature' : 'Feature'}
+              </button>
             )}
-            <Button size="sm" variant="outline" className="rounded-full gap-1 text-destructive" onClick={() => deleteProvider(p.id)}>
-              <Trash2 size={14} /> Remove
-            </Button>
+            <button
+              className="rounded-full px-3 py-1.5 text-xs font-semibold border border-border text-destructive hover:bg-destructive/5 flex items-center gap-1"
+              onClick={() => deleteProvider(p.id)}
+            >
+              <Trash2 size={12} /> {showApprove ? 'Reject' : 'Remove'}
+            </button>
           </div>
         </div>
         <button
-          className="text-xs text-forest flex items-center gap-1 mt-1 hover:underline"
+          className="text-xs text-amber flex items-center gap-1 mt-1 hover:underline"
           onClick={() => setExpandedBio(expanded ? null : p.id)}
         >
           {expanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />} {expanded ? 'Hide' : 'View'} Bio
         </button>
         {expanded && (
-          <p className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 leading-relaxed">{p.bio}</p>
+          <p className="text-sm text-muted-foreground bg-secondary/50 rounded-lg p-3 leading-relaxed">{p.bio}</p>
         )}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen section-cream py-10">
+    <div className="min-h-screen section-offwhite py-10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="font-serif text-3xl font-bold text-forest">Admin Dashboard</h1>
-          <button onClick={() => setAuthed(false)} className="text-sm text-muted-foreground hover:text-foreground">Sign out</button>
+          <div>
+            <h1 className="text-3xl font-bold text-primary">Admin Dashboard</h1>
+            <p className="text-sm text-muted-foreground mt-1">Zenihand directory management</p>
+          </div>
+          <button onClick={() => setAuthed(false)} className="text-sm text-muted-foreground hover:text-foreground border border-border rounded-full px-4 py-1.5">
+            Sign out
+          </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 border-b border-border mb-6 flex-wrap">
+        <div className="flex gap-1 border-b border-border mb-6 flex-wrap">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id)}
-              className={`px-4 py-2 text-sm font-medium transition-colors rounded-t-lg ${
+              className={`px-4 py-2.5 text-sm font-medium transition-colors rounded-t-lg ${
                 activeTab === t.id
-                  ? 'text-forest border-b-2 border-forest bg-background'
+                  ? 'text-primary border-b-2 border-primary bg-card'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               {t.label}
               {t.count !== undefined && (
-                <span className="ml-1.5 bg-secondary text-secondary-foreground text-xs px-2 py-0.5 rounded-full">{t.count}</span>
+                <span className="ml-1.5 bg-secondary text-muted-foreground text-xs px-2 py-0.5 rounded-full">{t.count}</span>
               )}
             </button>
           ))}
         </div>
 
-        {/* Pending */}
         {activeTab === 'pending' && (
           <div className="flex flex-col gap-3">
             {pending.length === 0 ? (
@@ -208,7 +229,6 @@ export default function Admin() {
           </div>
         )}
 
-        {/* Approved */}
         {activeTab === 'approved' && (
           <div className="flex flex-col gap-3">
             {approved.length === 0 ? (
@@ -219,7 +239,6 @@ export default function Admin() {
           </div>
         )}
 
-        {/* Inquiries */}
         {activeTab === 'inquiries' && (
           <div className="flex flex-col gap-3">
             {inquiries.length === 0 ? (
@@ -228,24 +247,25 @@ export default function Admin() {
               inquiries.map((inq) => {
                 const isExpanded = expandedMsg === inq.id;
                 return (
-                  <div key={inq.id} className="border border-border rounded-xl p-4">
+                  <div key={inq.id} className="border border-border rounded-xl p-4 bg-card">
                     <div className="flex items-start justify-between gap-2 flex-wrap">
                       <div>
-                        <p className="font-semibold text-sm">{inq.sender_name}</p>
-                        <p className="text-xs text-muted-foreground">{inq.sender_email}{inq.sender_phone ? ` · ${inq.sender_phone}` : ''}</p>
+                        <p className="font-semibold text-sm text-primary">{inq.sender_name}</p>
+                        <p className="text-xs text-muted-foreground">{inq.sender_email}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          To: <span className="text-forest">{(inq as any).providers?.full_name || 'Unknown'}</span> · {new Date(inq.created_at).toLocaleDateString()}
+                          To: <span className="text-amber">{(inq as any).providers?.full_name || 'Unknown'}</span> ·{' '}
+                          {new Date(inq.created_at).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
                     <button
-                      className="text-xs text-forest flex items-center gap-1 mt-2 hover:underline"
+                      className="text-xs text-amber flex items-center gap-1 mt-2 hover:underline"
                       onClick={() => setExpandedMsg(isExpanded ? null : inq.id)}
                     >
                       {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />} {isExpanded ? 'Hide' : 'View'} Message
                     </button>
                     {isExpanded && (
-                      <p className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 mt-2 leading-relaxed">{inq.message}</p>
+                      <p className="text-sm text-muted-foreground bg-secondary/50 rounded-lg p-3 mt-2 leading-relaxed">{inq.message}</p>
                     )}
                   </div>
                 );

@@ -2,28 +2,28 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-forest text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-xl font-bold mb-3">Zenihand</h3>
-            <p className="text-sm text-primary-foreground/75 leading-relaxed">
-              Connecting DFW families with independent aging-in-place support.
+            <h3 className="text-xl font-bold mb-3">Zenihand</h3>
+            <p className="text-sm text-primary-foreground/70 leading-relaxed">
+              Connecting DFW families with independent non-medical support providers.
             </p>
           </div>
 
-          {/* Navigate */}
+          {/* Links */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/60">Navigate</h4>
+            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/50">Links</h4>
             <ul className="flex flex-col gap-2">
               {[
                 { to: '/', label: 'Home' },
                 { to: '/browse', label: 'Browse Providers' },
-                { to: '/join', label: 'List Your Services' },
+                { to: '/join', label: 'Get Listed' },
               ].map((l) => (
                 <li key={l.to}>
-                  <Link to={l.to} className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  <Link to={l.to} className="text-sm text-primary-foreground/75 hover:text-primary-foreground transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -31,19 +31,25 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Contact */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/60">Legal</h4>
+            <h4 className="font-semibold text-sm uppercase tracking-wider mb-3 text-primary-foreground/50">Contact</h4>
             <ul className="flex flex-col gap-2">
-              <li><span className="text-sm text-primary-foreground/60 cursor-default">Privacy Policy</span></li>
-              <li><span className="text-sm text-primary-foreground/60 cursor-default">Terms of Use</span></li>
+              <li>
+                <a href="mailto:support@zenihand.com" className="text-sm text-primary-foreground/75 hover:text-primary-foreground transition-colors">
+                  support@zenihand.com
+                </a>
+              </li>
+              <li>
+                <span className="text-sm text-primary-foreground/60">Dallas–Fort Worth, TX</span>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-10 pt-6">
           <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl">
-            Zenihand is a free directory platform. We do not employ, supervise, or guarantee any provider or service.
+            Zenihand is a free directory. We do not employ, supervise, screen, or guarantee any provider or service.
             All providers are independent contractors. Non-medical services only.
           </p>
           <p className="text-xs text-primary-foreground/40 mt-2">
