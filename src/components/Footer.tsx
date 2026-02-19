@@ -48,9 +48,15 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-10 pt-6">
-          <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl">
-            Zenihand is a free directory. We do not employ, supervise, screen, or guarantee any provider or service.
-            All providers are independent contractors. Non-medical services only.
+          <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl mb-3">
+            Have a question about listings or using Zenihand? Email{' '}
+            <a href="mailto:support@zenihand.com" className="underline hover:text-primary-foreground transition-colors">
+              support@zenihand.com
+            </a>{' '}
+            and we'll respond within one business day.
+          </p>
+          <p className="text-xs text-primary-foreground/55 leading-relaxed max-w-3xl mb-3">
+            Zenihand is a directory platform connecting families with independent providers. We do not employ, supervise, screen, or guarantee any provider or service. All services are non-medical. Families arrange services directly with providers.
           </p>
           <p className="text-xs text-primary-foreground/40 mt-2">
             © 2025 Zenihand · Dallas–Fort Worth, TX

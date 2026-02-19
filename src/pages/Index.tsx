@@ -45,20 +45,20 @@ export default function Index() {
             Find Independent Non-Medical Support in DFW
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Zenihand is a connector directory. Families contact independent providers directly.
+            Zenihand connects families with independent providers offering non-medical support across the DFW Metro.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              to="/join"
-              className="btn-amber rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center gap-2"
-            >
-              Get Listed Free
-            </Link>
-            <Link
               to="/browse"
-              className="btn-outline-primary rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center"
+              className="btn-amber rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center"
             >
               Browse Providers
+            </Link>
+            <Link
+              to="/join"
+              className="rounded-full px-8 py-3.5 text-base font-semibold inline-flex items-center justify-center border-2 border-white text-white hover:bg-white/10 transition-colors"
+            >
+              Get Listed Free
             </Link>
           </div>
         </div>
@@ -92,7 +92,6 @@ export default function Index() {
                 to={`/browse/${cat.id}`}
                 className="card-warm p-6 flex flex-col gap-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 group"
               >
-                <span className="text-4xl">{cat.emoji}</span>
                 <h3 className="font-semibold text-foreground leading-snug text-base">{cat.label}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed flex-1">{cat.description}</p>
                 <span className="inline-flex items-center gap-1 text-sm font-semibold text-amber group-hover:gap-2 transition-all">

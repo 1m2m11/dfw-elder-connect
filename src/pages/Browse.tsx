@@ -120,18 +120,17 @@ export default function Browse() {
             ))}
           </div>
         ) : hasNoResults ? (
-          <div className="text-center py-20 text-muted-foreground">
-            {isZipEmpty ? (
-              <>
-                <p className="text-lg font-semibold text-primary mb-2">No providers found in this ZIP yet</p>
-                <p className="text-sm">Try another ZIP code or browse all providers.</p>
-              </>
-            ) : (
-              <>
-                <p className="text-lg font-semibold text-primary mb-2">No providers found</p>
-                <p className="text-sm">Try a different category or ZIP code.</p>
-              </>
-            )}
+          <div className="text-center py-20">
+            <p className="text-base text-muted-foreground max-w-md mx-auto mb-6">
+              We're currently onboarding independent providers in DFW. Check back soon or get listed today.
+            </p>
+            <Link
+              to="/join"
+              className="inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold text-white"
+              style={{ backgroundColor: '#2563EB' }}
+            >
+              Get Listed Free
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

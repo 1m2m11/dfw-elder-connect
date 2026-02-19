@@ -11,7 +11,7 @@ import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ChatWidget from "./components/ChatWidget";
+
 
 const queryClient = new QueryClient();
 
@@ -36,7 +36,6 @@ const App = () => (
             </Routes>
           </main>
           <Footer />
-          <ChatWidget />
         </div>
       </BrowserRouter>
     </TooltipProvider>
