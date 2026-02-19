@@ -17,8 +17,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-primary tracking-tight">Zenihand</span>
-          <span className="hidden sm:block text-xs text-muted-foreground font-medium border border-border rounded px-1.5 py-0.5">DFW</span>
+          <span className="text-xl font-bold text-primary tracking-tight" style={{ fontFamily: 'Lora, Georgia, serif' }}>Zenihand</span>
         </Link>
 
         {/* Desktop nav */}

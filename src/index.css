@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,50 +6,35 @@
 
 @layer base {
   :root {
-    /* Zenihand Brand Colors - HSL */
-    --background: 220 20% 98%;           /* off-white #f8f9fb */
-    --foreground: 213 40% 15%;           /* deep navy text */
-
-    --card: 0 0% 100%;                   /* white cards */
+    --background: 220 20% 98%;
+    --foreground: 213 40% 15%;
+    --card: 0 0% 100%;
     --card-foreground: 213 40% 15%;
-
     --popover: 220 20% 98%;
     --popover-foreground: 213 40% 15%;
-
-    --primary: 213 50% 19%;              /* deep navy #1a2e4a */
+    --primary: 213 50% 19%;
     --primary-foreground: 220 20% 98%;
-
-    --secondary: 216 14% 93%;            /* light grey #eef0f3 */
+    --secondary: 216 14% 93%;
     --secondary-foreground: 213 30% 30%;
-
     --muted: 216 14% 93%;
     --muted-foreground: 213 15% 48%;
-
-    --accent: 31 52% 50%;               /* warm amber #c4873e */
+    --accent: 31 52% 50%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 216 14% 87%;
     --input: 216 14% 90%;
     --ring: 213 50% 19%;
-
     --radius: 0.75rem;
-
-    /* Custom Zenihand tokens */
-    --navy: 213 50% 19%;                 /* #1a2e4a */
+    --navy: 213 50% 19%;
     --navy-light: 213 40% 28%;
-    --slate: 207 15% 35%;               /* #4a5c6a */
-    --offwhite: 220 20% 98%;            /* #f8f9fb */
-    --lightgrey: 216 14% 95%;           /* #f0f2f5 */
-    --amber: 31 52% 50%;               /* #c4873e */
+    --slate: 207 15% 35%;
+    --offwhite: 220 20% 98%;
+    --lightgrey: 216 14% 95%;
+    --amber: 31 52% 50%;
     --amber-light: 31 52% 94%;
-
-    /* Shadows */
     --shadow-card: 0 2px 12px -2px hsl(213 50% 19% / 0.10);
     --shadow-warm: 0 4px 24px -4px hsl(213 50% 19% / 0.08);
-
     --sidebar-background: 220 20% 97%;
     --sidebar-foreground: 213 40% 15%;
     --sidebar-primary: 213 50% 19%;
@@ -72,38 +57,52 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 1.6;
+    background-color: #f8f9fb;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Outfit', system-ui, sans-serif;
+    font-family: 'Lora', Georgia, serif;
     font-weight: 700;
     line-height: 1.2;
+  }
+
+  button, input, select, textarea, label, a, p, span, li {
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 }
 
 @layer components {
   .btn-primary {
     @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm;
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 
   .btn-amber {
     background: hsl(var(--amber));
     color: #fff;
+    font-family: 'Outfit', system-ui, sans-serif;
     @apply hover:opacity-90 transition-all duration-200 shadow-sm;
   }
 
   .btn-outline-primary {
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200;
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 
   .card-warm {
-    background: hsl(var(--card));
+    background: #ffffff;
+    border: 1.5px solid #dde2e8;
+    border-radius: 10px;
     box-shadow: var(--shadow-card);
-    @apply rounded-2xl border border-border/60;
+    transition: border-color 0.2s ease;
+  }
+
+  .card-warm:hover {
+    border-color: #2563EB;
   }
 
   .section-offwhite {
-    background: hsl(var(--offwhite));
+    background: #f8f9fb;
   }
 
   .section-lightgrey {
@@ -113,18 +112,21 @@
   .badge-amber {
     background: hsl(var(--amber-light));
     color: hsl(var(--amber));
+    font-family: 'Outfit', system-ui, sans-serif;
     @apply text-xs font-semibold px-2 py-0.5 rounded-full;
   }
 
   .badge-navy {
     background: hsl(var(--navy) / 0.1);
     color: hsl(var(--navy));
+    font-family: 'Outfit', system-ui, sans-serif;
     @apply text-xs font-semibold px-2 py-0.5 rounded-full;
   }
 
   .disclaimer-box {
     background: hsl(var(--amber-light));
     border-left: 3px solid hsl(var(--amber));
+    font-family: 'Outfit', system-ui, sans-serif;
     @apply rounded-lg p-4 text-sm text-foreground/80;
   }
 }
