@@ -56,6 +56,7 @@ export type Database = {
         Row: {
           approved: boolean | null
           bio: string
+          categories: string[] | null
           category: string
           created_at: string | null
           email: string
@@ -69,6 +70,7 @@ export type Database = {
         Insert: {
           approved?: boolean | null
           bio: string
+          categories?: string[] | null
           category: string
           created_at?: string | null
           email: string
@@ -82,6 +84,7 @@ export type Database = {
         Update: {
           approved?: boolean | null
           bio?: string
+          categories?: string[] | null
           category?: string
           created_at?: string | null
           email?: string
