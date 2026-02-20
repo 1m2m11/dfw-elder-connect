@@ -4,11 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Browse from "./pages/Browse";
-import ProviderProfile from "./pages/ProviderProfile";
-import Join from "./pages/Join";
-import Admin from "./pages/Admin";
-import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -26,12 +21,6 @@ const App = () => (
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/browse" element={<Browse />} />
-              <Route path="/browse/:category" element={<Browse />} />
-              <Route path="/providers/:id" element={<ProviderProfile />} />
-              <Route path="/join" element={<Join />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
