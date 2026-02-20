@@ -1,50 +1,73 @@
-import { FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-background/60 py-12 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <footer style={{ background: '#111e2e', color: 'rgba(255,255,255,0.55)', padding: '52px 40px 28px' }}>
+      <div style={{ maxWidth: 1060, margin: '0 auto' }}>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
+          {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg gradient-hero flex items-center justify-center">
-                <FileText className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-background" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                AllForms<span className="text-primary">Hub</span>
-              </span>
+            <div style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.3rem', color: 'white', marginBottom: 10 }}>
+              Zeni<span style={{ color: '#c4873e' }}>hand</span>
             </div>
-            <p className="text-sm leading-relaxed max-w-xs">
-              Your one-stop destination for free downloadable forms. Tax, legal, immigration, business and more.
+            <p style={{ fontSize: '0.82rem', lineHeight: 1.7, maxWidth: 260, color: 'rgba(255,255,255,0.55)', fontFamily: 'Outfit, sans-serif' }}>
+              Connecting DFW families with independent, non-medical aging-in-place support providers.
             </p>
           </div>
 
+          {/* Navigate */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-background/30 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Categories
+            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: 14, fontFamily: 'Outfit, sans-serif' }}>
+              Navigate
             </h4>
-            {["Tax & IRS", "Immigration", "Business", "Employment", "Legal"].map((c) => (
-              <a key={c} href="#forms" className="block text-sm text-background/50 hover:text-background transition-colors mb-2">
-                {c}
-              </a>
+            {[
+              { to: '/', label: 'Home' },
+              { to: '/browse', label: 'Browse Providers' },
+              { to: '/join', label: 'Get Listed Free' },
+              { to: '/#how-it-works', label: 'How It Works' },
+            ].map((l) => (
+              <Link key={l.to} to={l.to} style={{ display: 'block', fontSize: '0.86rem', color: 'rgba(255,255,255,0.52)', textDecoration: 'none', marginBottom: 9, fontFamily: 'Outfit, sans-serif' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.52)')}
+              >
+                {l.label}
+              </Link>
             ))}
           </div>
 
+          {/* Legal */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-background/30 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Support
+            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: 14, fontFamily: 'Outfit, sans-serif' }}>
+              Legal
             </h4>
-            <a href="mailto:support@allformhubs.com" className="text-sm text-primary hover:text-primary/80 transition-colors">
-              support@allformhubs.com
-            </a>
-            <p className="text-xs text-background/40 mt-4 leading-relaxed">
-              All forms link to official government and institutional sources. AllFormsHub does not provide legal, tax, or immigration advice.
-            </p>
+            <Link to="/terms" style={{ display: 'block', fontSize: '0.86rem', color: 'rgba(255,255,255,0.52)', textDecoration: 'none', marginBottom: 9, fontFamily: 'Outfit, sans-serif' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.52)')}
+            >
+              Terms of Use
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-background/10 pt-6 text-center text-xs text-background/30">
-          © {new Date().getFullYear()} AllFormsHub.com · All rights reserved
+        {/* Support box */}
+        <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '16px 22px', marginBottom: 28, fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.55)', fontFamily: 'Outfit, sans-serif' }}>
+          Need help or have a question?{' '}
+          Email{' '}
+          <a href="mailto:support@zenihand.com" style={{ color: '#f0c070', textDecoration: 'none' }}>
+            support@zenihand.com
+          </a>{' '}
+          and we'll respond within one business day.
+        </div>
+
+        {/* Bottom disclaimer */}
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 20, fontSize: '0.75rem', textAlign: 'center', lineHeight: 1.8, color: 'rgba(255,255,255,0.4)', fontFamily: 'Outfit, sans-serif' }}>
+          Zenihand is a directory platform connecting families with independent providers.
+          We do not employ, supervise, screen, or guarantee any provider or service.
+          All services are non-medical. Families arrange services directly with providers.
+          <span style={{ opacity: 0.45, display: 'block', marginTop: 10 }}>
+            © 2025 Zenihand · Dallas–Fort Worth, TX
+          </span>
         </div>
       </div>
     </footer>
